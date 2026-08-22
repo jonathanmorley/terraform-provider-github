@@ -1,0 +1,42 @@
+name: Patch stack sync
+
+on:
+  schedule:
+    # Daily at 09:17 UTC
+    - cron: "17 9 * * *"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Preview without pushing or closing PRs"
+        type: boolean
+        default: false
+
+permissions: {}
+
+jobs:
+  fork-token:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+    outputs:
+      token: ${{ steps.sts.outputs.token }}
+    steps:
+      - name: Mint fork token via Octo STS
+        id: sts
+        uses: octo-sts/action@f603d3be9d8dd9871a265776e625a27b00effe05  # v1.1.1
+        with:
+          scope: jonathanmorley/terraform-provider-github
+          identity: provider-patch-stack
+
+  sync:
+    needs: fork-token
+    permissions:
+      contents: read
+    uses: jonathanmorley/patch-stack-action/.github/workflows/patch-stack-sync.yml@patch/octo-sts-auth
+    with:
+      upstream_repo: integrations/terraform-provider-github
+      fork_repo: jonathanmorley/terraform-provider-github
+      dry_run: ${{ inputs.dry_run == true }}
+    secrets:
+      fork_token: ${{ needs.fork-token.outputs.token }}
+      claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
