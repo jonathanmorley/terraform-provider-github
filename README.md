@@ -40,3 +40,13 @@ This project uses [Milestones](https://github.com/integrations/terraform-provide
 ## Support
 
 GitHub Support does not provide support for this integration. This is a community-supported project. GitHub's SDK team triages issues and PRs periodically.
+
+## Fork maintenance (jonathanmorley)
+
+This fork carries a small patch stack on top of [integrations/terraform-provider-github](https://github.com/integrations/terraform-provider-github):
+
+- `patch/security-resources` — adds `github_repository_private_vulnerability_reporting` and `github_code_scanning_default_setup`, and makes `github_repository_dependabot_security_updates` tolerant of disabled repos during read/import. Intended to be PR'd upstream; each patch maps to one upstream PR.
+
+Automation: [patch-stack-action](https://github.com/DJRHails/patch-stack-action) runs daily via `.github/workflows/patch-stack-sync.yml`. It mirrors `upstream/main` into the fork-local `upstream` branch, rebases all `patch/*` branches, rebuilds `main` as upstream + patches, and retires patches whose upstream PRs merged. Commits directly on `main` must use the `fork:` subject prefix to survive rebuilds.
+
+Release convention: tags are cut from rebuilt `main` as `v<upstream-base>-jm.<n>` (e.g. `v6.13.0-jm.1`) and published to the Terraform/OpenTofu registry under the `jonathanmorley/github` namespace.
