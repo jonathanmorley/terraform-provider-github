@@ -1,0 +1,11 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/octo-sts/app/refs/heads/main/pkg/octosts/octosts.TrustPolicy.json
+
+# User-account workflows carry owner/repo IDs in the OIDC sub claim:
+# repo:jonathanmorley@605837/terraform-provider-github@1343124781:ref:refs/heads/main
+issuer: https://token.actions.githubusercontent.com
+subject_pattern: "^repo:jonathanmorley@\\d+/terraform-provider-github@\\d+:ref:refs/heads/main$"
+
+permissions:
+  contents: write
+  pull_requests: write
+  workflows: write
