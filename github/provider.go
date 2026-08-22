@@ -196,6 +196,7 @@ func NewProvider(version, commit string) func() *schema.Provider {
 				"github_branch_default":                                                 resourceGithubBranchDefault(),
 				"github_branch_protection":                                              resourceGithubBranchProtection(),
 				"github_branch_protection_v3":                                           resourceGithubBranchProtectionV3(),
+				"github_code_scanning_default_setup":                                    resourceGithubCodeScanningDefaultSetup(),
 				"github_codespaces_organization_secret":                                 resourceGithubCodespacesOrganizationSecret(),
 				"github_codespaces_organization_secret_repositories":                    resourceGithubCodespacesOrganizationSecretRepositories(),
 				"github_codespaces_secret":                                              resourceGithubCodespacesSecret(),
