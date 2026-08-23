@@ -52,17 +52,6 @@ checksum:
   algorithm: sha256
 
 signs:
-  - id: gpg
-    cmd: gpg
-    args:
-      - --batch
-      - --local-user
-      - "{{ .Env.GPG_FINGERPRINT }}"
-      - --output
-      - "${signature}"
-      - --detach-sign
-      - "${artifact}"
-    artifacts: checksum
   - id: cosign
     signature: "${artifact}.sbom.json.bundle"
     cmd: cosign
