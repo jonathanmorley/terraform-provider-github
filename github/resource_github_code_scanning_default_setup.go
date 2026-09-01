@@ -191,9 +191,10 @@ func configureCodeScanningDefaultSetup(ctx context.Context, d *schema.ResourceDa
 	owner := meta.name
 	repoName := d.Get("repository").(string)
 
+	querySuite := d.Get("query_suite").(string)
 	opts := &github.UpdateDefaultSetupConfigurationOptions{
 		State:      state,
-		QuerySuite: github.Ptr(d.Get("query_suite").(string)),
+		QuerySuite: &querySuite,
 	}
 	if v, ok := d.GetOk("languages"); ok {
 		set := v.(*schema.Set)
