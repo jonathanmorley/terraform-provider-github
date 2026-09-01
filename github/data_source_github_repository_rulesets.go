@@ -58,20 +58,26 @@ func dataSourceGithubRepositoryRulesets() *schema.Resource {
 }
 
 func dataSourceGithubRepositoryRulesetsRead(ctx context.Context, d *schema.ResourceData, meta any) diag.Diagnostics {
-	client := meta.(*Owner).v3client
-	owner := meta.(*Owner).name
-	repoName := d.Get("repository").(string)
+	owner, ok := meta.(*Owner)
+	if !ok {
+		return diag.Errorf("unexpected provider meta type: %T", meta)
+	}
+	client := owner.v3client
+	repoName, ok := d.Get("repository").(string)
+	if !ok {
+		return diag.Errorf("unexpected type for attribute \"repository\": %T", d.Get("repository"))
+	}
 
 	// Only include repository-scoped rulesets (not those inherited from a
 	// parent organization or enterprise) so that consumers can use the
 	// returned ruleset IDs to import repo rulesets.
+	excludeParents := false
 	opts := &github.RepositoryListRulesetsOptions{
-		IncludesParents: github.Bool(false),
+		IncludesParents: &excludeParents,
 	}
-
 	results := make([]map[string]any, 0)
 	for {
-		rulesets, resp, err := client.Repositories.GetAllRulesets(ctx, owner, repoName, opts)
+		rulesets, resp, err := client.Repositories.GetAllRulesets(ctx, owner.name, repoName, opts)
 		if err != nil {
 			return diag.FromErr(err)
 		}
