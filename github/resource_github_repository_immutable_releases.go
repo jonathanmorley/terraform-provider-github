@@ -113,10 +113,7 @@ func resourceGithubRepositoryImmutableReleasesRead(ctx context.Context, d *schem
 		return diag.Errorf("error reading repository immutable releases: %s", err.Error())
 	}
 
-	enabled := false
-	if status != nil && status.GetEnabled() {
-		enabled = true
-	}
+	enabled := status != nil && status.GetEnabled()
 	tflog.Debug(ctx, "Setting immutable releases enabled state", map[string]any{"owner": owner, "repo_name": repoName, "immutable_releases_enabled": enabled})
 	if err := d.Set("enabled", enabled); err != nil {
 		return diag.FromErr(err)
