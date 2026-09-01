@@ -3,6 +3,7 @@ package github
 import (
 	"context"
 	"errors"
+	"fmt"
 	"net/http"
 	"strconv"
 
@@ -191,9 +192,13 @@ func configureCodeScanningDefaultSetup(ctx context.Context, d *schema.ResourceDa
 	owner := meta.name
 	repoName := d.Get("repository").(string)
 
+	querySuite, ok := d.Get("query_suite").(string)
+	if !ok {
+		return fmt.Errorf("unexpected type for attribute \"query_suite\": %T", d.Get("query_suite"))
+	}
 	opts := &github.UpdateDefaultSetupConfigurationOptions{
 		State:      state,
-		QuerySuite: github.Ptr(d.Get("query_suite").(string)),
+		QuerySuite: &querySuite,
 	}
 	if v, ok := d.GetOk("languages"); ok {
 		set := v.(*schema.Set)
