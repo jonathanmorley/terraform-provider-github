@@ -1,0 +1,27 @@
+# Production maintenance proposals: lock refresh + merged-patch removal as PRs.
+#
+# Owned by the fork-owned overlay layer. Weekly schedule plus manual runs
+# (with optional dry-run preview). A human merges each proposal; the next
+# synthesis reflects it.
+name: Propose synthesis updates
+
+on:
+  schedule:
+    - cron: "0 7 * * 1"
+  workflow_dispatch:
+    inputs:
+      dry-run:
+        description: "Preview without opening a PR"
+        type: boolean
+        default: false
+
+jobs:
+  update:
+    uses: jonathanmorley/fork-maintainer/.github/workflows/update.yml@aedc61c239606152cbeba7b1a96e020e740359cd
+    permissions:
+      contents: write
+      pull-requests: write
+    with:
+      config: synthesis.json
+      lockfile: synthesis.lock
+      dry-run: ${{ inputs.dry-run }}
