@@ -1,0 +1,24 @@
+{
+  "patches": [
+    {
+      "repo": { "owner": "jonathanmorley", "name": "terraform-provider-github" },
+      "branch": "fork-owned",
+      "sha": "2cfbb472c6b52e7529e4319b9f48f30f782440b3"
+    },
+    {
+      "repo": { "owner": "jonathanmorley", "name": "terraform-provider-github" },
+      "branch": "patch/security-resources",
+      "sha": "f1beca348f4beb80688c0046aec6cbfb4c435596"
+    },
+    {
+      "repo": { "owner": "jonathanmorley", "name": "terraform-provider-github" },
+      "branch": "patch/security-resources--immutable-releases",
+      "sha": "2b8bcab30cc83260154dce6a885a29cb17e6ffcf"
+    },
+    {
+      "repo": { "owner": "jonathanmorley", "name": "terraform-provider-github" },
+      "branch": "patch/repository-rulesets-data-source",
+      "sha": "8f8f4bf2c18af244eecaffc90302fe9a66828e8c"
+    }
+  ]
+}
