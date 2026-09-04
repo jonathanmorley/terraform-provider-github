@@ -1,0 +1,15 @@
+# Experimental marker: proves synthesized pushes carry App credentials.
+# Pushes made with github.token do NOT trigger workflows; App-minted
+# pushes do. If this runs, the push that created the branch was App-authenticated.
+# Safe to delete with the rest of the experiment.
+name: Synth STS marker (experimental)
+
+on:
+  push:
+    branches: [synthesize-sts-test]
+
+jobs:
+  mark:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "SYNTHESIS PUSH RECEIVED ref=${{ github.ref }} sha=${{ github.sha }}"
