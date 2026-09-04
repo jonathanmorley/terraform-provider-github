@@ -17,6 +17,7 @@ jobs:
     with:
       base: integrations/terraform-provider-github@main
       patches: |
+        jonathanmorley/terraform-provider-github@fork-owned
         jonathanmorley/terraform-provider-github@patch/security-resources
         jonathanmorley/terraform-provider-github@patch/security-resources--immutable-releases
         jonathanmorley/terraform-provider-github@patch/repository-rulesets-data-source
