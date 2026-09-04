@@ -1,0 +1,25 @@
+# Experimental validation of fork-maintainer's synthesize workflow.
+#
+# Manual trigger only (`workflow_dispatch`); writes to the scratch branch
+# `synthesize-test`. Does NOT touch `main` (owned by patch-stack-action).
+# Safe to delete at any time.
+name: Synthesize (experimental)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  synthesize:
+    uses: jonathanmorley/fork-maintainer/.github/workflows/synthesize.yml@8e12a47b5a8c1e8ffc5b3b845516cd4d41a09485
+    with:
+      base: integrations/terraform-provider-github@main
+      patches: |
+        jonathanmorley/terraform-provider-github@patch/security-resources
+        jonathanmorley/terraform-provider-github@patch/security-resources--immutable-releases
+        jonathanmorley/terraform-provider-github@patch/repository-rulesets-data-source
+      output: jonathanmorley/terraform-provider-github@synthesize-test
+    secrets:
+      token: ${{ github.token }}
