@@ -17,7 +17,7 @@ on:
 
 jobs:
   update:
-    uses: jonathanmorley/fork-maintainer/.github/workflows/update.yml@2c8302784e52f9d78ae04a19b66fee1862cf1139
+    uses: jonathanmorley/fork-maintainer/.github/workflows/update.yml@bc757124e23936c2529dce6ef8c277057e107dcf
     permissions:
       contents: write
       pull-requests: write
