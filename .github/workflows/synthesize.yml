@@ -28,7 +28,7 @@ jobs:
       ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
     steps:
       - uses: actions/checkout@v4
-      - uses: jonathanmorley/fork-maintainer@6234981a212200bb4cbcbd9802f85d04ac15da31
+      - uses: jonathanmorley/fork-maintainer@bc757124e23936c2529dce6ef8c277057e107dcf
         id: synthesize
         with:
           config: synthesis.json
