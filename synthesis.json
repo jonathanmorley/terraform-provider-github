@@ -34,7 +34,7 @@
       "owner": "jonathanmorley",
       "name": "terraform-provider-github"
     },
-    "branch": "main"
+    "branch": "release"
   },
   "strategy": "replay",
   "overlay": [
@@ -43,7 +43,7 @@
         "owner": "jonathanmorley",
         "name": "terraform-provider-github"
       },
-      "branch": "fork-owned"
+      "branch": "main"
     }
   ]
 }

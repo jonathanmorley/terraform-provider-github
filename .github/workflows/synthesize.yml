@@ -1,6 +1,6 @@
-# Production synthesis: declarative base + patches -> main.
+# Production synthesis: declarative base + patches -> release.
 #
-# Owned by the fork-owned overlay layer (this file lives on the fork-owned
+# Owned by the control overlay layer (this file lives on the control
 # branch, so the synthesized output preserves it). Triggers: daily schedule
 # for upstream drift, pushes to patch branches for immediacy, manual runs.
 name: Synthesize
@@ -9,7 +9,7 @@ on:
   schedule:
     - cron: "0 6 * * *"
   push:
-    branches: [fork-owned, "patch/**", "feat/**"]
+    branches: [main, "patch/**", "feat/**"]
   workflow_dispatch:
 
 jobs:

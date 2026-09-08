@@ -1,6 +1,6 @@
 # Production maintenance proposals: lock refresh + merged-patch removal as PRs.
 #
-# Owned by the fork-owned overlay layer. Weekly schedule plus manual runs
+# Owned by the control overlay layer. Weekly schedule plus manual runs
 # (with optional dry-run preview). A human merges each proposal; the next
 # synthesis reflects it.
 name: Propose synthesis updates
