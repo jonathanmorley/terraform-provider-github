@@ -36,5 +36,14 @@
     },
     "branch": "main"
   },
-  "strategy": "replay"
+  "strategy": "replay",
+  "overlay": [
+    {
+      "repo": {
+        "owner": "jonathanmorley",
+        "name": "terraform-provider-github"
+      },
+      "branch": "fork-owned"
+    }
+  ]
 }
