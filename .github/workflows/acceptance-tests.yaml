@@ -6,6 +6,7 @@ on:
   push:
     branches:
       - main
+      - release
       - release-v*
 
   pull_request_target:
@@ -16,6 +17,7 @@ on:
       - labeled
     branches:
       - main
+      - release
       - release-v*
 
 concurrency:
