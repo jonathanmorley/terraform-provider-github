@@ -6,7 +6,7 @@
         "name": "terraform-provider-github"
       },
       "branch": "patch/security-resources",
-      "sha": "bd926e0c7ac210b5e4b651e188d30332b997ddb4"
+      "sha": "d9e5b8f235c394e650f391f4a97aebeb0b737fd9"
     },
     {
       "repo": {
